@@ -94,15 +94,11 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 function App() {
-  const [loading, setLoading] = React.useState(false);
+  const [loading] = React.useState(false);
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [menudata, setMenudata] = React.useState("Home");
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -177,9 +173,9 @@ function App() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        {menudata == "Home" && <Home></Home>}
-        {menudata == "Member" && <Member></Member>}
-        {menudata == "Market" && <Market></Market>}
+        {menudata === "Home" && <Home></Home>}
+        {menudata === "Member" && <Member></Member>}
+        {menudata === "Market" && <Market></Market>}
       </Box>
     </Box>
   );
