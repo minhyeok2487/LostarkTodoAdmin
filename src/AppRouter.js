@@ -24,9 +24,9 @@ const AppRouter = () => {
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
-      {/* <Box mt={5}>
+      <Box mt={5}>
         <Footer />
-      </Box> */}
+      </Box>
     </div>
   );
 };
