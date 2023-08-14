@@ -1,5 +1,5 @@
 import "./App.css";
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -24,7 +24,7 @@ import Home from './components/Home';
 import Member from './components/Member';
 import Market from './components/Market';
 import LogoutIcon from "@mui/icons-material/Logout";
-import { logout } from "./service/ApiService";
+import { call, logout } from "./service/ApiService";
 
 const drawerWidth = 240;
 
@@ -94,11 +94,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 function App() {
-  const [loading] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-  const [menudata, setMenudata] = React.useState("Home");
+  const [open, setOpen] = useState(false);
+  const [menudata, setMenudata] = useState("Home");
+
+  useEffect(() => {
+    call("/check", "GET", null).then((response) => {
+      setLoading(false);
+    });
+  }, []);
 
   const handleDrawerClose = () => {
     setOpen(false);
